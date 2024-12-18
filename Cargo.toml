@@ -1,0 +1,14 @@
+[package]
+name = "regex-automata-macro"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+regex-automata = { version = "0.4", default-features = false, features = ["dfa-search"] }
+regex-automata-proc-macro = { path = "./regex-automata-proc-macro" }
+
+[features]
+unicode = ["regex-automata/unicode", "regex-automata-proc-macro/unicode"]
+perf = ["regex-automata/perf"]
+
+default = ["unicode"]

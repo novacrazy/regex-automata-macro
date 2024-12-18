@@ -1,0 +1,16 @@
+[package]
+name = "regex-automata-proc-macro"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+regex-automata = { version = "0.4", default-features = false, features = ["dfa-build", "syntax"] }
+syn = { version = "2", default-features = false, features = ["parsing", "proc-macro"] }
+proc-macro2 = "1"
+quote = "1"
+
+[lib]
+proc-macro = true
+
+[features]
+unicode = ["regex-automata/unicode"]
