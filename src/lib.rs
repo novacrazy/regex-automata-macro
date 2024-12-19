@@ -1,4 +1,5 @@
 #![doc = include_str!("../README.md")]
+#![no_std]
 
 pub extern crate regex_automata;
 
@@ -113,3 +114,12 @@ macro_rules! decl_regex_sparse {
         });
     }
 }
+
+// test that only `dfa-search` is enabled on the `regex-automata` crate
+#[allow(dead_code)]
+/// ```rust,compile_fail
+/// use regex_automata::dfa::regex::Regex;
+/// // error[E0599]: no function or associated item named `new` found
+/// let re = Regex::new(r"(?iu)a(b|c)*d").unwrap();
+/// ```
+fn doc_test() {}
