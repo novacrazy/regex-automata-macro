@@ -3,6 +3,9 @@
 
 pub extern crate regex_automata;
 
+#[doc(hidden)]
+pub extern crate regex_automata_proc_macro;
+
 /// Create a [dense DFA](regex_automata::dfa::dense::DFA) from a regex pattern
 /// and return a reference to it to be used inline.
 ///
@@ -61,7 +64,7 @@ macro_rules! decl_dfa {
         $vis static $name: $crate::regex_automata::util::lazy::Lazy<
             $crate::regex_automata::dfa::dense::DFA<&'static [u32]>
         > = $crate::regex_automata::util::lazy::Lazy::new(|| {
-            regex_automata_proc_macro::dfa!($crate, false, $input)
+            $crate::regex_automata_proc_macro::dfa!($crate, false, $input)
         });
     };
 }
@@ -76,7 +79,7 @@ macro_rules! decl_dfa_sparse {
         $vis static $name: $crate::regex_automata::util::lazy::Lazy<
             $crate::regex_automata::dfa::sparse::DFA<&'static [u8]>
         > = $crate::regex_automata::util::lazy::Lazy::new(|| {
-            regex_automata_proc_macro::dfa!($crate, true, $input)
+            $crate::regex_automata_proc_macro::dfa!($crate, true, $input)
         });
     };
 }
@@ -93,7 +96,7 @@ macro_rules! decl_regex {
                 $crate::regex_automata::dfa::dense::DFA<&'static [u32]>
             >
         > = $crate::regex_automata::util::lazy::Lazy::new(|| {
-            regex_automata_proc_macro::regex!($crate, false, $input)
+            $crate::regex_automata_proc_macro::regex!($crate, false, $input)
         });
     }
 }
@@ -110,7 +113,7 @@ macro_rules! decl_regex_sparse {
                 $crate::regex_automata::dfa::sparse::DFA<&'static [u8]>
             >
         > = $crate::regex_automata::util::lazy::Lazy::new(|| {
-            regex_automata_proc_macro::regex!($crate, true, $input)
+            $crate::regex_automata_proc_macro::regex!($crate, true, $input)
         });
     }
 }
